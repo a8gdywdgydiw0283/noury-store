@@ -34,12 +34,6 @@ const sections = [
     items: productsByCategory("accessories"),
   },
   {
-    id: "gift-ready",
-    title: "Gift Ready",
-    subtitle: "Wrapped and ready to be gifted",
-    items: productsByCategory("gifts"),
-  },
-  {
     id: "kids-brides",
     title: "Kids & Brides",
     subtitle: "Favors & giveaways",

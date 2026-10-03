@@ -18,7 +18,11 @@ export type Category = {
   subtitle: string;
   blurb: string;
   image: string;
+  custom?: boolean;
 };
+
+/** Shipping is arranged with the store owner, not charged automatically. */
+export const SHIPPING_NOTE = "Shipping is confirmed with the store";
 
 export type Product = {
   slug: string;
@@ -49,8 +53,9 @@ export const categories: Category[] = [
     slug: "gifts",
     title: "Gifts",
     subtitle: "For Every Occasion",
-    blurb: "Thoughtful sets wrapped and ready to be gifted.",
+    blurb: "Every gift is tailored to the customer — tell us what you have in mind.",
     image: gifts,
+    custom: true,
   },
   {
     slug: "favors",
@@ -162,30 +167,6 @@ export const products: Product[] = [
     price: 699,
     image: beauty,
     description: "A curated edit of the pieces we reach for every single day.",
-  },
-  {
-    slug: "signature-gift-box",
-    name: "Signature Gift Box",
-    category: "gifts",
-    price: 799,
-    image: gifts,
-    description: "Our signature box, hand-wrapped and finished with a satin ribbon.",
-  },
-  {
-    slug: "thank-you-gift-set",
-    name: "Thank You Gift Set",
-    category: "gifts",
-    price: 649,
-    image: story,
-    description: "A thoughtful set crowned with a handwritten thank-you card.",
-  },
-  {
-    slug: "occasion-gift-hamper",
-    name: "Occasion Gift Hamper",
-    category: "gifts",
-    price: 1499,
-    image: gifts,
-    description: "A generous hamper for the moments worth celebrating.",
   },
 ];
 

@@ -103,7 +103,7 @@ function ProductPage() {
             </div>
 
             <div className="mt-8 space-y-3 border-t border-border pt-6 text-xs text-muted-foreground">
-              <p className="flex items-center gap-3"><Truck size={16} strokeWidth={1.25} /> Free shipping on orders over 999 EGP</p>
+              <p className="flex items-center gap-3"><Truck size={16} strokeWidth={1.25} /> Fast & secure delivery across Egypt</p>
               <p className="flex items-center gap-3"><ShieldCheck size={16} strokeWidth={1.25} /> Secure payment — multiple options</p>
               <p className="flex items-center gap-3"><Gift size={16} strokeWidth={1.25} /> Arrives in beautiful Noury packaging</p>
             </div>

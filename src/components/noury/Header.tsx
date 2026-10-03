@@ -66,12 +66,6 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40">
-      <div className="bg-mocha text-cream text-[0.72rem] tracking-wide text-center py-2">
-        Free Shipping on Orders Over 999 EGP <span className="mx-2 text-gold">+</span>
-        <Link to="/category/$slug" params={{ slug: "accessories" }} className="underline-offset-4 hover:underline">
-          Shop Now
-        </Link>
-      </div>
       <div className="bg-card/95 backdrop-blur border-b border-border">
         <div className="mx-auto max-w-7xl px-6 pt-6 pb-2 grid grid-cols-3 items-center">
           <div className="flex items-center gap-3">

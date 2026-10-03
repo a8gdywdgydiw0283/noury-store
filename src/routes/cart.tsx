@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/noury/PageHero";
-import { getProduct } from "@/components/noury/data";
+import { getProduct, SHIPPING_NOTE } from "@/components/noury/data";
 import { useStore } from "@/components/noury/store";
 import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from "lucide-react";
 
@@ -11,16 +11,11 @@ export const Route = createFileRoute("/cart")({
   component: Cart,
 });
 
-const FREE_SHIPPING = 999;
-
 function Cart() {
   const { cart, cartTotal, setQty, removeFromCart, formatPrice } = useStore();
   const lines = cart
     .map((l) => ({ line: l, product: getProduct(l.slug) }))
     .filter((x): x is { line: typeof x.line; product: NonNullable<typeof x.product> } => Boolean(x.product));
-
-  const shipping = cartTotal >= FREE_SHIPPING || cartTotal === 0 ? 0 : 60;
-  const remaining = Math.max(0, FREE_SHIPPING - cartTotal);
 
   return (
     <>
@@ -47,11 +42,9 @@ function Cart() {
         ) : (
           <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
             <div>
-              {remaining > 0 && (
-                <p className="mb-6 border border-border bg-secondary px-4 py-3 text-xs text-muted-foreground">
-                  Add {formatPrice(remaining)} more to unlock free shipping.
-                </p>
-              )}
+              <p className="mb-6 border border-border bg-secondary px-4 py-3 text-xs text-muted-foreground">
+                {SHIPPING_NOTE}.
+              </p>
               <div className="divide-y divide-border border-y border-border">
                 {lines.map(({ line, product }) => (
                   <div key={line.slug} className="flex gap-5 py-5">
@@ -119,13 +112,16 @@ function Cart() {
                 </div>
                 <div className="flex justify-between">
                   <dt className="text-muted-foreground">Shipping</dt>
-                  <dd>{shipping === 0 ? "Free" : formatPrice(shipping)}</dd>
+                  <dd className="text-muted-foreground">Confirmed with the store</dd>
                 </div>
                 <div className="flex justify-between border-t border-border pt-3 text-base">
                   <dt>Total</dt>
-                  <dd>{formatPrice(cartTotal + shipping)}</dd>
+                  <dd>{formatPrice(cartTotal)}</dd>
                 </div>
               </dl>
+              <p className="mt-3 text-[0.7rem] text-muted-foreground">
+                Total excludes shipping — the store owner confirms shipping with you on WhatsApp.
+              </p>
               <Link
                 to="/checkout"
                 className="mt-6 w-full bg-mocha text-cream py-3.5 eyebrow hover:bg-foreground transition-colors cursor-pointer flex items-center justify-center"

@@ -19,8 +19,8 @@ const faqs = [
     a: "Orders are dispatched within 1–2 business days. Delivery takes 1–2 days in Cairo & Giza, 2–3 days in Alexandria & the Delta, and 3–5 days in Upper Egypt.",
   },
   {
-    q: "Do you offer free shipping?",
-    a: "Yes — shipping is free across Egypt on all orders over 999 EGP.",
+    q: "How is shipping calculated?",
+    a: "Shipping is arranged with the store owner. Once you send your order on WhatsApp, we confirm the shipping cost with you.",
   },
   {
     q: "Which payment methods do you accept?",

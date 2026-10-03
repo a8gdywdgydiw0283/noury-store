@@ -17,11 +17,7 @@ function egp(value: number): string {
   return `${value.toLocaleString("en-EG")} جنيه`;
 }
 
-export function buildOrderMessage(
-  cart: CartLine[],
-  customer: CustomerInfo,
-  totals: { subtotal: number; shipping: number; total: number },
-): string {
+export function buildOrderMessage(cart: CartLine[], customer: CustomerInfo, subtotal: number): string {
   const lines = cart
     .map((line) => {
       const product = getProduct(line.slug);
@@ -44,8 +40,8 @@ export function buildOrderMessage(
     "━━━━━ تفاصيل الطلب ━━━━━",
     ...lines,
     "",
-    `الشحن: ${totals.shipping === 0 ? "مجاني 🎉" : egp(totals.shipping)}`,
-    `*الإجمالي: ${egp(totals.total)}*`,
+    "الشحن: يتحدد مع الأونر 📞",
+    `*الإجمالي (بدون الشحن): ${egp(subtotal)}*`,
     "",
     "شكرًا لتعاملكم مع Noury 💛",
   ].join("\n");

@@ -14,8 +14,6 @@ export const Route = createFileRoute("/checkout")({
   component: Checkout,
 });
 
-const FREE_SHIPPING = 999;
-
 type FieldErrors = {
   name?: string;
   governorate?: string;
@@ -33,9 +31,6 @@ function Checkout() {
   const lines = cart
     .map((l) => ({ line: l, product: getProduct(l.slug) }))
     .filter((x): x is { line: typeof x.line; product: NonNullable<typeof x.product> } => Boolean(x.product));
-
-  const shipping = cartTotal >= FREE_SHIPPING || cartTotal === 0 ? 0 : 60;
-  const total = cartTotal + shipping;
 
   function set<K extends keyof typeof form>(key: K, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -61,7 +56,7 @@ function Checkout() {
       toast.error("من فضلك اكمل بيانات الطلب");
       return;
     }
-    const message = buildOrderMessage(cart, form, { subtotal: cartTotal, shipping, total });
+    const message = buildOrderMessage(cart, form, cartTotal);
     openWhatsApp(message);
     toast.success("تم فتح واتساب لإرسال الطلب");
     clearCart();
@@ -190,13 +185,16 @@ function Checkout() {
             </div>
             <div className="flex justify-between">
               <dt className="text-muted-foreground">الشحن</dt>
-              <dd>{shipping === 0 ? "مجاني" : formatPrice(shipping)}</dd>
+              <dd className="text-muted-foreground">يتحدد مع الأونر</dd>
             </div>
             <div className="flex justify-between border-t border-border pt-3 text-base">
               <dt>الإجمالي</dt>
-              <dd>{formatPrice(total)}</dd>
+              <dd>{formatPrice(cartTotal)}</dd>
             </div>
           </dl>
+          <p className="mt-3 text-[0.7rem] text-muted-foreground">
+            الإجمالي بدون الشحن — الأونر بيتفق معاك على الشحن على واتساب.
+          </p>
           <Link to="/cart" className="mt-6 block text-center text-xs text-muted-foreground hover:text-foreground transition-colors">
             تعديل السلة
           </Link>

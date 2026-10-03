@@ -15,7 +15,7 @@ export const Route = createFileRoute("/shipping")({
 
 const perks = [
   { I: Truck, title: "Fast Delivery", text: "Orders are dispatched within 1–2 business days." },
-  { I: Package, title: "Free Over 999 EGP", text: "Free shipping across Egypt on orders over 999 EGP." },
+  { I: Package, title: "Shipping Confirmed With You", text: "The store owner confirms the shipping cost with you on WhatsApp." },
   { I: ShieldCheck, title: "Secure Payment", text: "Pay with card, wallet or cash on delivery." },
   { I: RotateCcw, title: "Easy Returns", text: "14-day returns on unused items in original packaging." },
 ];
