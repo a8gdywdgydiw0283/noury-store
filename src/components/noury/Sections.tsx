@@ -1,15 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Truck, ShieldCheck, Gift, Heart, Instagram } from "lucide-react";
+import { ArrowRight, Truck, ShieldCheck, Gift, Heart } from "lucide-react";
 import { Logo } from "./Logo";
 import { categories, productsByCategory } from "./data";
 import featured from "@/assets/featured-model.jpg";
 import story from "@/assets/story.jpg";
-import rings from "@/assets/rings.jpg";
-import beauty from "@/assets/cat-beauty.jpg";
 import gifts from "@/assets/cat-gifts.jpg";
-import bags from "@/assets/cat-bags.jpg";
-import hijab from "@/assets/cat-hijab.jpg";
-import hero2 from "@/assets/hero-2.jpg";
 
 const Arrow = () => (
   <ArrowRight size={16} strokeWidth={1.25} className="transition-transform group-hover:translate-x-1" />
@@ -18,7 +13,7 @@ const zoom = "transition-transform duration-[1200ms] ease-out group-hover:scale-
 
 export function Categories() {
   return (
-    <section id="categories" className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <section id="categories" className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-4">
       {categories.map((c) => (
         <Link key={c.slug} to="/category/$slug" params={{ slug: c.slug }} className="group block bg-card border border-border">
           <div className="aspect-[5/4] overflow-hidden">
@@ -173,48 +168,12 @@ export function StoryRow() {
           <h2 className="font-serif text-3xl">Kids &amp; Brides</h2>
           <p className="text-sm mt-1 opacity-90">Favors &amp; giveaways for every celebration</p>
           <Link
-            to="/category/$slug"
-            params={{ slug: "favors" }}
+            to="/collections"
             className="mt-6 inline-flex w-fit items-center gap-3 bg-cream text-mocha px-5 py-2.5 eyebrow"
           >
             Shop Now <ArrowRight size={14} strokeWidth={1.25} />
           </Link>
         </div>
-      </div>
-    </section>
-  );
-}
-
-const insta = [rings, beauty, gifts, bags, hijab, hero2];
-
-export function InstagramGrid() {
-  return (
-    <section className="mx-auto max-w-7xl px-6 pb-14">
-      <div className="flex items-center gap-6 mb-6">
-        <span className="h-px flex-1 bg-border" />
-        <p className="eyebrow text-muted-foreground">Our Instagram</p>
-        <span className="h-px flex-1 bg-border" />
-      </div>
-      <div className="grid grid-cols-3 md:grid-cols-7 gap-3">
-        {insta.map((src, k) => (
-          <Link key={k} to="/collections" className="group aspect-square overflow-hidden block">
-            <img src={src} alt="" loading="lazy" className={`h-full w-full object-cover ${zoom}`} />
-          </Link>
-        ))}
-        <a
-          href="https://instagram.com"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="aspect-square bg-card border border-border flex flex-col items-center justify-center text-center gap-2 hover:border-foreground transition-colors"
-        >
-          <span className="font-serif text-xl leading-tight">
-            Follow
-            <br />
-            Our Journey
-          </span>
-          <Instagram size={18} strokeWidth={1.25} />
-          <span className="text-xs">@noury.eg</span>
-        </a>
       </div>
     </section>
   );

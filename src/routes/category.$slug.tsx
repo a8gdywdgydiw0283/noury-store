@@ -1,7 +1,8 @@
-import { createFileRoute, notFound, Link } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Gift } from "lucide-react";
 import { PageHero } from "@/components/noury/PageHero";
 import { ProductGrid } from "@/components/noury/ProductCard";
+import { GiftOrderForm } from "@/components/noury/GiftOrderForm";
 import { getCategory, productsByCategory } from "@/components/noury/data";
 
 export const Route = createFileRoute("/category/$slug")({
@@ -36,21 +37,19 @@ function CategoryPage() {
           image={category.image}
           breadcrumb={[{ label: "Home", to: "/" }, { label: category.title }]}
         />
-        <section className="mx-auto max-w-3xl px-6 py-20">
-          <div className="border border-border bg-card px-8 py-16 text-center">
+        <section
+          className="mx-auto max-w-3xl px-6 py-16"
+          dir="rtl"
+          style={{ fontFamily: "'Cairo', var(--font-sans)" }}
+        >
+          <div className="mb-10 text-center">
             <Gift size={34} strokeWidth={1} className="mx-auto text-gold" />
-            <h2 className="mt-6 font-serif text-3xl">Gifts made for you</h2>
+            <h2 className="mt-6 font-serif text-3xl">الهدية على حسب العميل</h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Every gift is customised to the customer. Tell us the occasion, your budget and who it's for,
-              and we'll put together something special — wrapped and ready.
+              اكتب بياناتك وتفاصيل الهدية، وقولنا الهدية لمين — وهنحوّلك واتساب برسالة جاهزة فيها كل حاجة.
             </p>
-            <Link
-              to="/contact"
-              className="mt-8 inline-flex items-center gap-4 bg-mocha text-cream px-7 py-3.5 eyebrow hover:bg-foreground transition-colors"
-            >
-              Tell us what you'd like
-            </Link>
           </div>
+          <GiftOrderForm />
         </section>
       </>
     );

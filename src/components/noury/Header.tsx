@@ -67,7 +67,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40">
       <div className="bg-card/95 backdrop-blur border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 pt-6 pb-2 grid grid-cols-3 items-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-4 md:pt-6 pb-2 grid grid-cols-[1fr_auto_1fr] items-center gap-2">
           <div className="flex items-center gap-3">
             <button
               className="md:hidden cursor-pointer"
@@ -104,7 +104,7 @@ export function Header() {
             </Link>
           </div>
         </div>
-        <nav className="hidden md:flex justify-center gap-12 pb-3 pt-4 text-sm">
+        <nav className="hidden md:flex justify-center gap-5 lg:gap-10 pb-3 pt-4 text-sm">
           {nav.map((n) => (
             <NavLink
               key={n.label}

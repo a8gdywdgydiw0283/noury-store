@@ -1,7 +1,8 @@
 import accessories from "@/assets/cat-accessories.jpg";
 import beauty from "@/assets/cat-beauty.jpg";
 import gifts from "@/assets/cat-gifts.jpg";
-import favors from "@/assets/cat-favors.jpg";
+import kids from "@/assets/cat-kids.jpg";
+import bridal from "@/assets/cat-bridal.jpg";
 import necklace from "@/assets/necklace.jpg";
 import rings from "@/assets/rings.jpg";
 import bracelets from "@/assets/bracelets.jpg";
@@ -10,7 +11,7 @@ import story from "@/assets/story.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 
-export type CategorySlug = "accessories" | "beauty" | "gifts" | "favors";
+export type CategorySlug = "accessories" | "beauty" | "gifts" | "kids-favors" | "bridal-favors";
 
 export type Category = {
   slug: CategorySlug;
@@ -58,11 +59,18 @@ export const categories: Category[] = [
     custom: true,
   },
   {
-    slug: "favors",
-    title: "Kids & Brides",
-    subtitle: "Favors & Giveaways",
-    blurb: "Charming giveaways and keepsakes for children's parties and bridal celebrations.",
-    image: favors,
+    slug: "kids-favors",
+    title: "Kids' Favors",
+    subtitle: "Parties & Baby Showers",
+    blurb: "Playful giveaways and keepsakes for children's parties and baby showers.",
+    image: kids,
+  },
+  {
+    slug: "bridal-favors",
+    title: "Bridal Favors",
+    subtitle: "Weddings & Henna",
+    blurb: "Elegant favors for bridal showers, weddings and henna nights.",
+    image: bridal,
   },
 ];
 
@@ -112,7 +120,7 @@ export const products: Product[] = [
   {
     slug: "kids-party-favor-box",
     name: "Kids' Party Favor Box",
-    category: "favors",
+    category: "kids-favors",
     price: 249,
     image: gifts,
     description: "A cheerful box of treats and small keepsakes for your little guests.",
@@ -121,7 +129,7 @@ export const products: Product[] = [
   {
     slug: "bridal-favor-set",
     name: "Bridal Favor Set",
-    category: "favors",
+    category: "bridal-favors",
     price: 599,
     image: story,
     description: "Elegant keepsakes for your bridal party and wedding guests.",
@@ -130,7 +138,7 @@ export const products: Product[] = [
   {
     slug: "baby-shower-favors",
     name: "Baby Shower Favors",
-    category: "favors",
+    category: "kids-favors",
     price: 449,
     image: gifts,
     description: "Sweet, gender-neutral favors for welcoming the newest arrival.",
@@ -138,7 +146,7 @@ export const products: Product[] = [
   {
     slug: "henna-night-favors",
     name: "Henna Night Favors",
-    category: "favors",
+    category: "bridal-favors",
     price: 399,
     image: featuredModel,
     description: "Delicate favors for henna nights and engagement celebrations.",
@@ -182,7 +190,8 @@ export const collections: Collection[] = [
   { slug: "best-sellers", title: "Best Sellers", subtitle: "Loved by our community", image: featuredModel },
   { slug: "the-gold-edit", title: "The Gold Edit", subtitle: "Warm tones, layered", image: necklace },
   { slug: "gift-ready", title: "Gift Ready", subtitle: "Wrapped and ready", image: gifts },
-  { slug: "kids-brides", title: "Kids & Brides", subtitle: "Favors & giveaways", image: story },
+  { slug: "kids-favors", title: "Kids' Favors", subtitle: "Parties & baby showers", image: kids },
+  { slug: "bridal-favors", title: "Bridal Favors", subtitle: "Weddings & henna", image: bridal },
   { slug: "evening", title: "Evening", subtitle: "For after dark", image: hero2 },
 ];
 
@@ -195,7 +204,8 @@ export const nav: NavItem[] = [
   { label: "Accessories", to: "/category/$slug", slug: "accessories" },
   { label: "Beauty", to: "/category/$slug", slug: "beauty" },
   { label: "Gifts", to: "/category/$slug", slug: "gifts" },
-  { label: "Kids & Brides", to: "/category/$slug", slug: "favors" },
+  { label: "Kids' Favors", to: "/category/$slug", slug: "kids-favors" },
+  { label: "Bridal Favors", to: "/category/$slug", slug: "bridal-favors" },
   { label: "Collections", to: "/collections" },
   { label: "About", to: "/about" },
 ];

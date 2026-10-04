@@ -53,3 +53,30 @@ export function openWhatsApp(message: string): void {
     window.open(url, "_blank", "noopener,noreferrer");
   }
 }
+
+export type GiftRequest = {
+  name: string;
+  phone: string;
+  address: string;
+  recipient: string;
+  details: string;
+};
+
+export function buildGiftMessage(gift: GiftRequest): string {
+  return [
+    "🎁 *طلب هدية مخصصة من Noury*",
+    "",
+    "━━━━━ بيانات العميل ━━━━━",
+    `👤 الاسم: ${gift.name}`,
+    `📞 رقم الموبايل: ${gift.phone}`,
+    `🏠 العنوان بالتفصيل: ${gift.address}`,
+    "",
+    "━━━━━ تفاصيل الهدية ━━━━━",
+    `🎀 الهدية لمين: ${gift.recipient}`,
+    `📝 تفاصيل الهدية: ${gift.details}`,
+    "",
+    "الشحن بيتحدد مع الأونر 📞",
+    "",
+    "شكرًا لتعاملكم مع Noury 💛",
+  ].join("\n");
+}

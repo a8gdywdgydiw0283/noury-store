@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/noury/Hero";
-import { Categories, Benefits, Featured, StoryRow, InstagramGrid } from "@/components/noury/Sections";
+import { Categories, Benefits, Featured, StoryRow } from "@/components/noury/Sections";
 import { ProductGrid } from "@/components/noury/ProductCard";
 import { products } from "@/components/noury/data";
 import { Link } from "@tanstack/react-router";
@@ -42,7 +42,6 @@ function Index() {
         </div>
         <ProductGrid items={products.slice(0, 4)} />
       </section>
-      <InstagramGrid />
     </>
   );
 }
