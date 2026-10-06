@@ -26,7 +26,7 @@ export function Footer() {
     <footer className="bg-mocha text-cream mt-auto">
       <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <Link to="/" aria-label="Noury home">
-          <Logo size="sm" />
+          <Logo size="sm" tone="light" />
         </Link>
         <nav className="flex flex-wrap justify-center gap-8 text-xs">
           {footerLinks.map((l) => (

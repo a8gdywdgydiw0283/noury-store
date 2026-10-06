@@ -166,7 +166,7 @@ export function BridalFavorsForm() {
             value={form.cardPhrase}
             onChange={(e) => set("cardPhrase", e.target.value)}
             className={`${field} mt-2 resize-none`}
-            placeholder="اكتب الجملة اللي حابب تظهر على الكارت — أو سيبها فاضية والأونر تكتبها"
+            placeholder="اكتب الجملة اللي حابب تظهر على الكارت — أو سيبها فاضية والأونر يكتبها"
           />
         </div>
         <div>
