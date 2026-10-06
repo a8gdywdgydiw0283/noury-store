@@ -115,3 +115,42 @@ export function buildBabyFavorsMessage(req: BabyFavorsRequest): string {
     "شكرًا لتعاملكم مع Noury 💛",
   ].join("\n");
 }
+
+export type BridalFavorsRequest = {
+  name: string;
+  governorate: string;
+  address: string;
+  phone: string;
+  altPhone: string;
+  groomName: string;
+  brideName: string;
+  cardPhrase: string;
+  eventDate: string;
+  photosCount: number;
+};
+
+export function buildBridalFavorsMessage(req: BridalFavorsRequest): string {
+  return [
+    "💍 *طلب توزيعات عرائس من Noury*",
+    "",
+    "━━━━━ بيانات الشحن ━━━━━",
+    `👤 الاسم: ${req.name}`,
+    `📞 رقم الموبايل: ${req.phone}`,
+    `📱 الرقم البديل: ${req.altPhone}`,
+    `📍 المحافظة: ${req.governorate}`,
+    `🏠 العنوان بالتفصيل: ${req.address}`,
+    "",
+    "━━━━━ تفاصيل التوزيعات ━━━━━",
+    `🤵 اسم العريس: ${req.groomName}`,
+    `👰 اسم العروسة: ${req.brideName}`,
+    `💌 الجملة على الكارت: ${req.cardPhrase.trim() ? req.cardPhrase : "يترك للأونر ✍️"}`,
+    `📅 التاريخ: ${req.eventDate}`,
+    req.photosCount > 0
+      ? `📷 صور مرفقة (${req.photosCount}) — العميل هيبعتها في الشات`
+      : "📷 بدون صور مرفقة",
+    "",
+    "الشحن بيتحدد مع الأونر 📞",
+    "",
+    "شكرًا لتعاملكم مع Noury 💛",
+  ].join("\n");
+}

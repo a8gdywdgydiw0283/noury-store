@@ -2,12 +2,11 @@ import accessories from "@/assets/cat-accessories.jpg";
 import beauty from "@/assets/cat-beauty.jpg";
 import gifts from "@/assets/cat-gifts.jpg";
 import bridal from "@/assets/cat-bridal.jpg";
-import baby from "@/assets/cat-kids.jpg";
+import baby from "@/assets/cat-baby.jpg";
 import necklace from "@/assets/necklace.jpg";
 import rings from "@/assets/rings.jpg";
 import bracelets from "@/assets/bracelets.jpg";
 import featuredModel from "@/assets/featured-model.jpg";
-import story from "@/assets/story.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 
@@ -64,6 +63,7 @@ export const categories: Category[] = [
     subtitle: "Weddings & Henna",
     blurb: "Elegant favors for bridal showers, weddings and henna nights.",
     image: bridal,
+    custom: true,
   },
   {
     slug: "baby-favors",
@@ -117,23 +117,6 @@ export const products: Product[] = [
     price: 649,
     image: bracelets,
     description: "A classic flat-link bracelet finished with a secure clasp.",
-  },
-  {
-    slug: "bridal-favor-set",
-    name: "Bridal Favor Set",
-    category: "bridal-favors",
-    price: 599,
-    image: story,
-    description: "Elegant keepsakes for your bridal party and wedding guests.",
-    badge: "Best Seller",
-  },
-  {
-    slug: "henna-night-favors",
-    name: "Henna Night Favors",
-    category: "bridal-favors",
-    price: 399,
-    image: featuredModel,
-    description: "Delicate favors for henna nights and engagement celebrations.",
   },
   {
     slug: "rose-glow-lip-set",

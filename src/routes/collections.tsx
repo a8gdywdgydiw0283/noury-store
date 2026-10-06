@@ -33,12 +33,6 @@ const sections = [
     subtitle: "Warm tones, made to layer",
     items: productsByCategory("accessories"),
   },
-  {
-    id: "bridal-favors",
-    title: "Bridal Favors",
-    subtitle: "Weddings & henna nights",
-    items: productsByCategory("bridal-favors"),
-  },
 ];
 
 function Collections() {
