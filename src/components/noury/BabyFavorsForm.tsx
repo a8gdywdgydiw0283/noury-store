@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { MessageCircle } from "lucide-react";
 import { buildBabyFavorsMessage, openWhatsApp, WHATSAPP_DISPLAY } from "./whatsapp";
+import { ThanksPanel } from "./ThanksPanel";
 
 type BabyFormData = {
   name: string;
@@ -34,7 +35,7 @@ const additions = ["كاندي 🍬", "شوكولاتة 🍫", "بدون إضا�
 export function BabyFavorsForm() {
   const [form, setForm] = useState<BabyFormData>(empty);
   const [errors, setErrors] = useState<BabyErrors>({});
-  const [sent, setSent] = useState(false);
+  const [stage, setStage] = useState<"form" | "thanks" | "sent">("form");
 
   function set<K extends keyof BabyFormData>(key: K, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -63,16 +64,24 @@ export function BabyFavorsForm() {
       toast.error("من فضلك اكمل بيانات الطلب");
       return;
     }
+    setStage("thanks");
+  }
+
+  function sendViaWhatsApp() {
     openWhatsApp(buildBabyFavorsMessage(form));
     toast.success("تم فتح واتساب لإرسال طلب التوزيعات");
     setForm(empty);
-    setSent(true);
+    setStage("sent");
   }
 
   const field =
     "w-full border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors text-right";
 
-  if (sent) {
+  if (stage === "thanks") {
+    return <ThanksPanel onContinue={sendViaWhatsApp} />;
+  }
+
+  if (stage === "sent") {
     return (
       <div className="border border-border bg-card px-8 py-14 text-center">
         <MessageCircle size={30} strokeWidth={1} className="mx-auto text-gold" />
@@ -83,7 +92,7 @@ export function BabyFavorsForm() {
         </p>
         <button
           type="button"
-          onClick={() => setSent(false)}
+          onClick={() => setStage("form")}
           className="mt-6 border border-border px-6 py-3 eyebrow hover:border-foreground transition-colors cursor-pointer"
         >
           طلب توزيعات تاني

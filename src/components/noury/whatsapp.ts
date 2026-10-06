@@ -28,22 +28,24 @@ export function buildOrderMessage(cart: CartLine[], customer: CustomerInfo, subt
     .filter((l): l is string => Boolean(l));
 
   return [
-    "🛍️ *طلب جديد من موقع Noury*",
+    "*طلب جديد من Noury*",
+    "أهلاً بيك، وطلبك وصلنا خلاص!",
     "",
-    "━━━━━ بيانات العميل ━━━━━",
-    `👤 الاسم: ${customer.name}`,
-    `📞 رقم الموبايل: ${customer.phone}`,
-    `📱 الرقم البديل: ${customer.altPhone}`,
-    `📍 المحافظة: ${customer.governorate}`,
-    `🏠 العنوان بالتفصيل: ${customer.address}`,
+    "━━━━━ بيانات الشحن ━━━━━",
+    `الاسم: ${customer.name}`,
+    `رقم الموبايل: ${customer.phone}`,
+    `الرقم البديل: ${customer.altPhone}`,
+    `المحافظة: ${customer.governorate}`,
+    `العنوان بالتفصيل: ${customer.address}`,
     "",
     "━━━━━ تفاصيل الطلب ━━━━━",
     ...lines,
     "",
-    "الشحن: يتحدد مع الأونر 📞",
+    "ملحوظة: الشحن بيتحدد مع الأونر",
     `*الإجمالي (بدون الشحن): ${egp(subtotal)}*`,
     "",
-    "شكرًا لتعاملكم مع Noury 💛",
+    "شكرًا لثقتك في Noury! منورنا، وهنأكد معاك كل التفاصيل قريب.",
+    "Noury | نُورِى",
   ].join("\n");
 }
 
@@ -64,20 +66,22 @@ export type GiftRequest = {
 
 export function buildGiftMessage(gift: GiftRequest): string {
   return [
-    "🎁 *طلب هدية مخصصة من Noury*",
+    "*طلب هدية مخصصة - Noury*",
+    "أهلاً بيك، وطلبك وصلنا خلاص!",
     "",
     "━━━━━ بيانات العميل ━━━━━",
-    `👤 الاسم: ${gift.name}`,
-    `📞 رقم الموبايل: ${gift.phone}`,
-    `🏠 العنوان بالتفصيل: ${gift.address}`,
+    `الاسم: ${gift.name}`,
+    `رقم الموبايل: ${gift.phone}`,
+    `العنوان بالتفصيل: ${gift.address}`,
     "",
     "━━━━━ تفاصيل الهدية ━━━━━",
-    `🎀 الهدية لمين: ${gift.recipient}`,
-    `📝 تفاصيل الهدية: ${gift.details}`,
+    `الهدية لمين: ${gift.recipient}`,
+    `تفاصيل الهدية: ${gift.details}`,
     "",
-    "الشحن بيتحدد مع الأونر 📞",
+    "ملحوظة: الشحن بيتحدد مع الأونر",
     "",
-    "شكرًا لتعاملكم مع Noury 💛",
+    "شكرًا لثقتك في Noury! منورنا، وهنأكد معاك كل التفاصيل قريب.",
+    "Noury | نُورِى",
   ].join("\n");
 }
 
@@ -95,24 +99,26 @@ export type BabyFavorsRequest = {
 
 export function buildBabyFavorsMessage(req: BabyFavorsRequest): string {
   return [
-    "🍼 *طلب توزيعات مواليد من Noury*",
+    "*طلب توزيعات مواليد - Noury*",
+    "أهلاً بيك، وطلبك وصلنا خلاص!",
     "",
     "━━━━━ بيانات الشحن ━━━━━",
-    `👤 الاسم: ${req.name}`,
-    `📞 رقم الموبايل: ${req.phone}`,
-    `📱 الرقم البديل: ${req.altPhone}`,
-    `📍 المحافظة: ${req.governorate}`,
-    `🏠 العنوان بالتفصيل: ${req.address}`,
+    `الاسم: ${req.name}`,
+    `رقم الموبايل: ${req.phone}`,
+    `الرقم البديل: ${req.altPhone}`,
+    `المحافظة: ${req.governorate}`,
+    `العنوان بالتفصيل: ${req.address}`,
     "",
     "━━━━━ تفاصيل التوزيعات ━━━━━",
-    `👶 اسم البيبي: ${req.babyName}`,
-    `🔢 العدد: ${req.quantity}`,
-    `📅 تاريخ الولادة: ${req.birthDate}`,
-    `🍬 الإضافة: ${req.addition}`,
+    `اسم البيبي: ${req.babyName}`,
+    `العدد: ${req.quantity}`,
+    `تاريخ الولادة: ${req.birthDate}`,
+    `الإضافة: ${req.addition}`,
     "",
-    "الشحن بيتحدد مع الأونر 📞",
+    "ملحوظة: الشحن بيتحدد مع الأونر",
     "",
-    "شكرًا لتعاملكم مع Noury 💛",
+    "شكرًا لثقتك في Noury! منورنا، وهنأكد معاك كل التفاصيل قريب.",
+    "Noury | نُورِى",
   ].join("\n");
 }
 
@@ -131,26 +137,28 @@ export type BridalFavorsRequest = {
 
 export function buildBridalFavorsMessage(req: BridalFavorsRequest): string {
   return [
-    "💍 *طلب توزيعات عرائس من Noury*",
+    "*طلب توزيعات عرائس - Noury*",
+    "أهلاً بيك، وطلبك وصلنا خلاص!",
     "",
     "━━━━━ بيانات الشحن ━━━━━",
-    `👤 الاسم: ${req.name}`,
-    `📞 رقم الموبايل: ${req.phone}`,
-    `📱 الرقم البديل: ${req.altPhone}`,
-    `📍 المحافظة: ${req.governorate}`,
-    `🏠 العنوان بالتفصيل: ${req.address}`,
+    `الاسم: ${req.name}`,
+    `رقم الموبايل: ${req.phone}`,
+    `الرقم البديل: ${req.altPhone}`,
+    `المحافظة: ${req.governorate}`,
+    `العنوان بالتفصيل: ${req.address}`,
     "",
     "━━━━━ تفاصيل التوزيعات ━━━━━",
-    `🤵 اسم العريس: ${req.groomName}`,
-    `👰 اسم العروسة: ${req.brideName}`,
-    `💌 الجملة على الكارت: ${req.cardPhrase.trim() ? req.cardPhrase : "يترك للأونر ✍️"}`,
-    `📅 التاريخ: ${req.eventDate}`,
+    `اسم العريس: ${req.groomName}`,
+    `اسم العروسة: ${req.brideName}`,
+    `الجملة على الكارت: ${req.cardPhrase.trim() ? req.cardPhrase : "يترك للأونر"}`,
+    `التاريخ: ${req.eventDate}`,
     req.photosCount > 0
-      ? `📷 صور مرفقة (${req.photosCount}) — العميل هيبعتها في الشات`
-      : "📷 بدون صور مرفقة",
+      ? `صور مرفقة (${req.photosCount}) - العميل هيبعتها في الشات`
+      : "بدون صور مرفقة",
     "",
-    "الشحن بيتحدد مع الأونر 📞",
+    "ملحوظة: الشحن بيتحدد مع الأونر",
     "",
-    "شكرًا لتعاملكم مع Noury 💛",
+    "شكرًا لثقتك في Noury! منورنا، وهنأكد معاك كل التفاصيل قريب.",
+    "Noury | نُورِى",
   ].join("\n");
 }

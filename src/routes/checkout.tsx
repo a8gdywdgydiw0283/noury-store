@@ -5,6 +5,7 @@ import { PageHero } from "@/components/noury/PageHero";
 import { getProduct } from "@/components/noury/data";
 import { useStore } from "@/components/noury/store";
 import { buildOrderMessage, openWhatsApp, WHATSAPP_DISPLAY } from "@/components/noury/whatsapp";
+import { ThanksPanel } from "@/components/noury/ThanksPanel";
 import { ArrowRight, MessageCircle, ShoppingBag } from "lucide-react";
 
 export const Route = createFileRoute("/checkout")({
@@ -26,7 +27,7 @@ function Checkout() {
   const { cart, cartTotal, clearCart, formatPrice } = useStore();
   const [form, setForm] = useState({ name: "", governorate: "", address: "", phone: "", altPhone: "" });
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [sent, setSent] = useState(false);
+  const [stage, setStage] = useState<"form" | "thanks" | "sent">("form");
 
   const lines = cart
     .map((l) => ({ line: l, product: getProduct(l.slug) }))
@@ -56,17 +57,20 @@ function Checkout() {
       toast.error("من فضلك اكمل بيانات الطلب");
       return;
     }
-    const message = buildOrderMessage(cart, form, cartTotal);
-    openWhatsApp(message);
+    setStage("thanks");
+  }
+
+  function sendViaWhatsApp() {
+    openWhatsApp(buildOrderMessage(cart, form, cartTotal));
     toast.success("تم فتح واتساب لإرسال الطلب");
     clearCart();
-    setSent(true);
+    setStage("sent");
   }
 
   const field =
     "w-full border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors text-right";
 
-  if (lines.length === 0 && !sent) {
+  if (lines.length === 0 && stage === "form") {
     return (
       <>
         <PageHero eyebrow="Checkout" title="إتمام الطلب" subtitle="خطوة واحدة تفصلك عن إتمام طلبك." breadcrumb={[{ label: "الرئيسية", to: "/" }, { label: "إتمام الطلب" }]} />
@@ -82,7 +86,18 @@ function Checkout() {
     );
   }
 
-  if (sent) {
+  if (stage === "thanks") {
+    return (
+      <>
+        <PageHero eyebrow="شكرًا ليك" title="طلبك وصلنا" breadcrumb={[{ label: "الرئيسية", to: "/" }, { label: "إتمام الطلب" }]} />
+        <section className="mx-auto max-w-3xl px-6 py-20" dir="rtl" style={{ fontFamily: "'Cairo', var(--font-sans)" }}>
+          <ThanksPanel onContinue={sendViaWhatsApp} />
+        </section>
+      </>
+    );
+  }
+
+  if (stage === "sent") {
     return (
       <>
         <PageHero eyebrow="تم" title="تم تجهيز طلبك" breadcrumb={[{ label: "الرئيسية", to: "/" }, { label: "إتمام الطلب" }]} />
