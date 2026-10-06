@@ -80,3 +80,38 @@ export function buildGiftMessage(gift: GiftRequest): string {
     "شكرًا لتعاملكم مع Noury 💛",
   ].join("\n");
 }
+
+export type BabyFavorsRequest = {
+  name: string;
+  governorate: string;
+  address: string;
+  phone: string;
+  altPhone: string;
+  babyName: string;
+  quantity: string;
+  birthDate: string;
+  addition: string;
+};
+
+export function buildBabyFavorsMessage(req: BabyFavorsRequest): string {
+  return [
+    "🍼 *طلب توزيعات مواليد من Noury*",
+    "",
+    "━━━━━ بيانات الشحن ━━━━━",
+    `👤 الاسم: ${req.name}`,
+    `📞 رقم الموبايل: ${req.phone}`,
+    `📱 الرقم البديل: ${req.altPhone}`,
+    `📍 المحافظة: ${req.governorate}`,
+    `🏠 العنوان بالتفصيل: ${req.address}`,
+    "",
+    "━━━━━ تفاصيل التوزيعات ━━━━━",
+    `👶 اسم البيبي: ${req.babyName}`,
+    `🔢 العدد: ${req.quantity}`,
+    `📅 تاريخ الولادة: ${req.birthDate}`,
+    `🍬 الإضافة: ${req.addition}`,
+    "",
+    "الشحن بيتحدد مع الأونر 📞",
+    "",
+    "شكرًا لتعاملكم مع Noury 💛",
+  ].join("\n");
+}

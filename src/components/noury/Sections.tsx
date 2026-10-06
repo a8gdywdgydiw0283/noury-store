@@ -13,7 +13,7 @@ const zoom = "transition-transform duration-[1200ms] ease-out group-hover:scale-
 
 export function Categories() {
   return (
-    <section id="categories" className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <section id="categories" className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-4">
       {categories.map((c) => (
         <Link key={c.slug} to="/category/$slug" params={{ slug: c.slug }} className="group block bg-card border border-border">
           <div className="aspect-[5/4] overflow-hidden">

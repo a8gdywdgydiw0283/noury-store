@@ -2,6 +2,7 @@ import accessories from "@/assets/cat-accessories.jpg";
 import beauty from "@/assets/cat-beauty.jpg";
 import gifts from "@/assets/cat-gifts.jpg";
 import bridal from "@/assets/cat-bridal.jpg";
+import baby from "@/assets/cat-kids.jpg";
 import necklace from "@/assets/necklace.jpg";
 import rings from "@/assets/rings.jpg";
 import bracelets from "@/assets/bracelets.jpg";
@@ -10,7 +11,7 @@ import story from "@/assets/story.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 
-export type CategorySlug = "accessories" | "beauty" | "gifts" | "bridal-favors";
+export type CategorySlug = "accessories" | "beauty" | "gifts" | "bridal-favors" | "baby-favors";
 
 export type Category = {
   slug: CategorySlug;
@@ -63,6 +64,14 @@ export const categories: Category[] = [
     subtitle: "Weddings & Henna",
     blurb: "Elegant favors for bridal showers, weddings and henna nights.",
     image: bridal,
+  },
+  {
+    slug: "baby-favors",
+    title: "Baby Favors",
+    subtitle: "Newborn Distributions",
+    blurb: "Personalised newborn favors — tell us the baby name, count and birth date.",
+    image: baby,
+    custom: true,
   },
 ];
 
@@ -179,6 +188,7 @@ export const nav: NavItem[] = [
   { label: "Beauty", to: "/category/$slug", slug: "beauty" },
   { label: "Gifts", to: "/category/$slug", slug: "gifts" },
   { label: "Bridal Favors", to: "/category/$slug", slug: "bridal-favors" },
+  { label: "Baby Favors", to: "/category/$slug", slug: "baby-favors" },
   { label: "Collections", to: "/collections" },
   { label: "About", to: "/about" },
 ];

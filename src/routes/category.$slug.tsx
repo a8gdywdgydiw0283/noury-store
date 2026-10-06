@@ -1,8 +1,9 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { Gift } from "lucide-react";
+import { Baby, Gift } from "lucide-react";
 import { PageHero } from "@/components/noury/PageHero";
 import { ProductGrid } from "@/components/noury/ProductCard";
 import { GiftOrderForm } from "@/components/noury/GiftOrderForm";
+import { BabyFavorsForm } from "@/components/noury/BabyFavorsForm";
 import { getCategory, productsByCategory } from "@/components/noury/data";
 
 export const Route = createFileRoute("/category/$slug")({
@@ -28,6 +29,7 @@ function CategoryPage() {
   const { category, items } = Route.useLoaderData();
 
   if (category.custom) {
+    const isBaby = category.slug === "baby-favors";
     return (
       <>
         <PageHero
@@ -43,13 +45,21 @@ function CategoryPage() {
           style={{ fontFamily: "'Cairo', var(--font-sans)" }}
         >
           <div className="mb-10 text-center">
-            <Gift size={34} strokeWidth={1} className="mx-auto text-gold" />
-            <h2 className="mt-6 font-serif text-3xl">الهدية على حسب العميل</h2>
+            {isBaby ? (
+              <Baby size={34} strokeWidth={1} className="mx-auto text-gold" />
+            ) : (
+              <Gift size={34} strokeWidth={1} className="mx-auto text-gold" />
+            )}
+            <h2 className="mt-6 font-serif text-3xl">
+              {isBaby ? "توزيعات المواليد على حسب العميل" : "الهدية على حسب العميل"}
+            </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              اكتب بياناتك وتفاصيل الهدية، وقولنا الهدية لمين — وهنحوّلك واتساب برسالة جاهزة فيها كل حاجة.
+              {isBaby
+                ? "اكتب بيانات الشحن وتفاصيل التوزيعات — اسم البيبي والعدد وتاريخ الولادة والإضافة — وهنحوّلك واتساب برسالة جاهزة فيها كل حاجة."
+                : "اكتب بياناتك وتفاصيل الهدية، وقولنا الهدية لمين — وهنحوّلك واتساب برسالة جاهزة فيها كل حاجة."}
             </p>
           </div>
-          <GiftOrderForm />
+          {isBaby ? <BabyFavorsForm /> : <GiftOrderForm />}
         </section>
       </>
     );
