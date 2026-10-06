@@ -5,11 +5,20 @@ export function ThanksPanel({ onContinue, extra }: { onContinue: () => void; ext
   return (
     <div className="border border-border bg-card px-8 py-14 text-center">
       <Heart size={30} strokeWidth={1} className="mx-auto text-gold" />
-      <h3 className="mt-5 font-serif text-3xl">شكرًا ليك من قلبنا!</h3>
+      <h3 className="mt-5 font-serif text-3xl">شكرًا من القلب لاختياركِ Noury 🤍</h3>
       <p className="mx-auto mt-4 max-w-xl text-sm leading-loose text-muted-foreground">
-        طلبك وصلنا يا غالي، ومبسوطين إنك اخترت Noury تكون جزء من يومك ومناسبتك الحلوة.
-        فريقنا هيراجع طلبك ويأكده معاك على واتساب خطوة بخطوة.
-        ومستنينك دايمًا — عندنا كل جديد هيعجبك، ويسعدنا تطلب مننا تاني قريب!
+        سعداء جدًا إن إحدى تفاصيلنا أصبحت جزءًا من يومكِ أو من لحظة مميزة تخصكِ.
+        نتمنى إن كل قطعة وصلتكِ تكون على قد توقعاتكِ، وتضيف لكِ لمسة جميلة تحبيها.
+      </p>
+      <p className="mx-auto mt-3 max-w-xl text-sm leading-loose text-muted-foreground">
+        وجودكِ معانا يعني لنا الكثير، وننتظر زيارتكِ القادمة بكل حب. ♡
+      </p>
+      <p className="mt-6 text-sm leading-loose">
+        بكل حب،
+        <br />
+        <span className="font-serif font-medium uppercase tracking-[0.18em] text-mocha">Noury</span>
+        <br />
+        <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Your Style, Your Story.</span>
       </p>
       {extra}
       <button
@@ -19,7 +28,6 @@ export function ThanksPanel({ onContinue, extra }: { onContinue: () => void; ext
       >
         <MessageCircle size={16} strokeWidth={1.5} /> متابعة وإرسال الطلب على واتساب
       </button>
-      <p className="mt-6 text-xs tracking-[0.2em] text-muted-foreground">Noury | نُورِى</p>
     </div>
   );
 }
