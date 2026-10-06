@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section className="relative h-[560px] md:h-[620px] overflow-hidden bg-mocha text-cream">
       <img src={heroBride} alt="Noury bridal collection" width={1920} height={1024}
-        className="absolute inset-0 h-full w-full object-cover" />
+        className="absolute inset-0 h-full w-full object-cover object-top" />
       <div className="absolute inset-0 bg-gradient-to-r from-mocha/85 via-mocha/45 to-transparent" />
       <div className="relative mx-auto max-w-7xl h-full px-6 flex flex-col justify-center animate-rise">
         <p className="eyebrow">Welcome to Noury</p>
