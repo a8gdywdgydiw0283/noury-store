@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Noury — Details That Define You" },
-      { name: "description", content: "Luxury accessories, beauty, gifts and celebration favors for kids and brides." },
+      { name: "description", content: "Luxury accessories, beauty, gifts and bridal favors." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

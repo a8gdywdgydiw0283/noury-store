@@ -13,7 +13,7 @@ const zoom = "transition-transform duration-[1200ms] ease-out group-hover:scale-
 
 export function Categories() {
   return (
-    <section id="categories" className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-4">
+    <section id="categories" className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
       {categories.map((c) => (
         <Link key={c.slug} to="/category/$slug" params={{ slug: c.slug }} className="group block bg-card border border-border">
           <div className="aspect-[5/4] overflow-hidden">
@@ -157,7 +157,7 @@ export function StoryRow() {
       <div className="group relative overflow-hidden min-h-[300px] text-cream">
         <img
           src={gifts}
-          alt="Noury giveaways and favors for kids and brides"
+          alt="Noury favors and giveaways for brides"
           loading="lazy"
           width={816}
           height={816}
@@ -165,8 +165,8 @@ export function StoryRow() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-mocha/75 to-mocha/10" />
         <div className="relative h-full flex flex-col justify-center p-8">
-          <h2 className="font-serif text-3xl">Kids &amp; Brides</h2>
-          <p className="text-sm mt-1 opacity-90">Favors &amp; giveaways for every celebration</p>
+          <h2 className="font-serif text-3xl">Bridal Favors</h2>
+          <p className="text-sm mt-1 opacity-90">Favors &amp; giveaways for weddings &amp; henna nights</p>
           <Link
             to="/collections"
             className="mt-6 inline-flex w-fit items-center gap-3 bg-cream text-mocha px-5 py-2.5 eyebrow"

@@ -6,7 +6,7 @@ import { products } from "@/components/noury/data";
 import { Link } from "@tanstack/react-router";
 
 const title = "Noury — Details That Define You | Accessories, Beauty, Gifts & Favors";
-const description = "Shop Noury for elegant accessories, beauty essentials, gifts and celebration favors for kids and brides.";
+const description = "Shop Noury for elegant accessories, beauty essentials, gifts and bridal favors.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

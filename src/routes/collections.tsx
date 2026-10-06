@@ -34,12 +34,6 @@ const sections = [
     items: productsByCategory("accessories"),
   },
   {
-    id: "kids-favors",
-    title: "Kids' Favors",
-    subtitle: "Parties & baby showers",
-    items: productsByCategory("kids-favors"),
-  },
-  {
     id: "bridal-favors",
     title: "Bridal Favors",
     subtitle: "Weddings & henna nights",
