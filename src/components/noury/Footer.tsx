@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Music2, ChevronDown } from "lucide-react";
 import { Logo } from "./Logo";
-import { footerLinks } from "./data";
 import { currencies, useStore, type Currency } from "./store";
 
 const socials = [
@@ -28,13 +27,6 @@ export function Footer() {
         <Link to="/" aria-label="Noury home">
           <Logo size="sm" tone="light" />
         </Link>
-        <nav className="flex flex-wrap justify-center gap-8 text-xs">
-          {footerLinks.map((l) => (
-            <Link key={l.label} to={l.to} className="hover:text-gold transition-colors">
-              {l.label}
-            </Link>
-          ))}
-        </nav>
         <div className="flex items-center gap-5">
           {socials.map((s) => (
             <a
