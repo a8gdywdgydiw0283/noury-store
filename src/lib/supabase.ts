@@ -18,4 +18,3 @@ export function getSupabase(): SupabaseClient | null {
 export function adminPassword(): string {
   return (import.meta.env["VITE_ADMIN_PASSWORD"] as string | undefined) || "";
 }
-}
