@@ -5,13 +5,15 @@ import { ProductGrid } from "@/components/noury/ProductCard";
 import { GiftOrderForm } from "@/components/noury/GiftOrderForm";
 import { BabyFavorsForm } from "@/components/noury/BabyFavorsForm";
 import { BridalFavorsForm } from "@/components/noury/BridalFavorsForm";
-import { getCategory, productsByCategory } from "@/components/noury/data";
+import { getCategory } from "@/components/noury/data";
+import { catalogByCategory, getCatalog } from "@/lib/catalog";
 
 export const Route = createFileRoute("/category/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const category = getCategory(params.slug);
     if (!category) throw notFound();
-    return { category, items: productsByCategory(category.slug) };
+    const catalog = await getCatalog();
+    return { category, items: catalogByCategory(catalog, category.slug) };
   },
   head: ({ params }) => {
     const category = getCategory(params.slug);

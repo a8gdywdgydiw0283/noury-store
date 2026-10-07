@@ -2,18 +2,20 @@ import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Heart, Minus, Plus, ShieldCheck, Truck, Gift } from "lucide-react";
 import { ProductGrid } from "@/components/noury/ProductCard";
-import { getCategory, getProduct, products } from "@/components/noury/data";
+import { getCategory } from "@/components/noury/data";
+import { getCatalog } from "@/lib/catalog";
 import { useStore } from "@/components/noury/store";
 
 export const Route = createFileRoute("/product/$slug")({
-  loader: ({ params }) => {
-    const product = getProduct(params.slug);
+  loader: async ({ params }) => {
+    const catalog = await getCatalog();
+    const product = catalog.find((p) => p.slug === params.slug);
     if (!product) throw notFound();
-    const related = products.filter((p) => p.category === product.category && p.slug !== product.slug).slice(0, 4);
+    const related = catalog.filter((p) => p.category === product.category && p.slug !== product.slug).slice(0, 4);
     return { product, related };
   },
-  head: ({ params }) => {
-    const product = getProduct(params.slug);
+  head: ({ loaderData }) => {
+    const product = loaderData?.product;
     return {
       meta: [
         { title: product ? `${product.name} — Noury` : "Product — Noury" },

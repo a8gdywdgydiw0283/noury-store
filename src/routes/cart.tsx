@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/noury/PageHero";
-import { getProduct, SHIPPING_NOTE } from "@/components/noury/data";
+import { SHIPPING_NOTE } from "@/components/noury/data";
+import { findProduct, useCatalog } from "@/lib/catalog";
 import { useStore } from "@/components/noury/store";
 import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from "lucide-react";
 
@@ -13,8 +14,9 @@ export const Route = createFileRoute("/cart")({
 
 function Cart() {
   const { cart, cartTotal, setQty, removeFromCart, formatPrice } = useStore();
+  useCatalog();
   const lines = cart
-    .map((l) => ({ line: l, product: getProduct(l.slug) }))
+    .map((l) => ({ line: l, product: findProduct(l.slug) }))
     .filter((x): x is { line: typeof x.line; product: NonNullable<typeof x.product> } => Boolean(x.product));
 
   return (

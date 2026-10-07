@@ -2,9 +2,10 @@ import { useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { PageHero } from "@/components/noury/PageHero";
-import { getProduct } from "@/components/noury/data";
+import { findProduct, useCatalog } from "@/lib/catalog";
 import { useStore } from "@/components/noury/store";
 import { buildOrderMessage, openWhatsApp, WHATSAPP_DISPLAY } from "@/components/noury/whatsapp";
+import { saveCheckoutOrder } from "@/lib/orders";
 import { ThanksPanel } from "@/components/noury/ThanksPanel";
 import { ArrowRight, MessageCircle, ShoppingBag } from "lucide-react";
 
@@ -29,8 +30,9 @@ function Checkout() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [stage, setStage] = useState<"form" | "thanks" | "sent">("form");
 
+  useCatalog();
   const lines = cart
-    .map((l) => ({ line: l, product: getProduct(l.slug) }))
+    .map((l) => ({ line: l, product: findProduct(l.slug) }))
     .filter((x): x is { line: typeof x.line; product: NonNullable<typeof x.product> } => Boolean(x.product));
 
   function set<K extends keyof typeof form>(key: K, value: string) {
@@ -61,6 +63,7 @@ function Checkout() {
   }
 
   function sendViaWhatsApp() {
+    void saveCheckoutOrder(cart, form, cartTotal);
     openWhatsApp(buildOrderMessage(cart, form, cartTotal));
     toast.success("تم فتح واتساب لإرسال الطلب");
     clearCart();

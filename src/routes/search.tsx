@@ -2,7 +2,8 @@ import { useState, type FormEvent } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Search as SearchIcon } from "lucide-react";
 import { ProductGrid } from "@/components/noury/ProductCard";
-import { categories, searchProducts } from "@/components/noury/data";
+import { categories } from "@/components/noury/data";
+import { searchCatalog, useCatalog } from "@/lib/catalog";
 
 export const Route = createFileRoute("/search")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -18,7 +19,8 @@ function SearchPage() {
   const { q } = Route.useSearch();
   const navigate = useNavigate();
   const [term, setTerm] = useState(q);
-  const results = searchProducts(q);
+  const catalog = useCatalog();
+  const results = searchCatalog(catalog, q);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();

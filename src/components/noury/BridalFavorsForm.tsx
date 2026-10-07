@@ -2,6 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { toast } from "sonner";
 import { ImagePlus, MessageCircle } from "lucide-react";
 import { buildBridalFavorsMessage, openWhatsApp, WHATSAPP_DISPLAY } from "./whatsapp";
+import { saveFavorRequest } from "@/lib/orders";
 import { ThanksPanel } from "./ThanksPanel";
 
 type BridalFormData = {
@@ -72,6 +73,12 @@ export function BridalFavorsForm() {
   }
 
   function sendViaWhatsApp() {
+    const { name, governorate, address, phone, altPhone } = form;
+    void saveFavorRequest(
+      "bridal",
+      { name, governorate, address, phone, altPhone },
+      { groomName: form.groomName, brideName: form.brideName, cardPhrase: form.cardPhrase, eventDate: form.eventDate, photosCount: photos.length },
+    );
     openWhatsApp(buildBridalFavorsMessage({ ...form, photosCount: photos.length }));
     toast.success("تم فتح واتساب لإرسال طلب التوزيعات");
     setForm(empty);

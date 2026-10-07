@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { toast } from "sonner";
-import { getProduct } from "./data";
+import { findProduct } from "@/lib/catalog";
 
 export type CartLine = { slug: string; qty: number };
 
@@ -87,7 +87,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { slug, qty }];
     });
-    const product = getProduct(slug);
+    const product = findProduct(slug);
     toast.success(`${product ? product.name : "Item"} added to your bag`);
   }, []);
 
@@ -108,7 +108,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const toggleWishlist = useCallback((slug: string) => {
     setWishlist((prev) => {
       const has = prev.includes(slug);
-      const product = getProduct(slug);
+      const product = findProduct(slug);
       toast(has ? "Removed from wishlist" : `${product ? product.name : "Item"} saved to wishlist`);
       return has ? prev.filter((s) => s !== slug) : [...prev, slug];
     });
@@ -120,7 +120,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const cartTotal = useMemo(
     () =>
       cart.reduce((sum, l) => {
-        const product = getProduct(l.slug);
+        const product = findProduct(l.slug);
         return sum + (product ? product.price * l.qty : 0);
       }, 0),
     [cart],

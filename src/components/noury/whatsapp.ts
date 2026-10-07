@@ -1,5 +1,5 @@
 import type { CartLine } from "./store";
-import { getProduct } from "./data";
+import { findProduct } from "@/lib/catalog";
 
 /** Store WhatsApp number: 01069313045 -> international format for wa.me */
 export const WHATSAPP_NUMBER = "201069313045";
@@ -20,7 +20,7 @@ function egp(value: number): string {
 export function buildOrderMessage(cart: CartLine[], customer: CustomerInfo, subtotal: number): string {
   const lines = cart
     .map((line) => {
-      const product = getProduct(line.slug);
+      const product = findProduct(line.slug);
       if (!product) return null;
       const lineTotal = product.price * line.qty;
       return `• ${product.name} × ${line.qty} = ${egp(lineTotal)}`;

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/noury/PageHero";
 import { ProductGrid } from "@/components/noury/ProductCard";
-import { products, productsByCategory } from "@/components/noury/data";
+import { catalogByCategory, useCatalog, type Product } from "@/lib/catalog";
 import hero1 from "@/assets/hero-1.jpg";
 
 export const Route = createFileRoute("/collections")({
@@ -14,28 +14,28 @@ export const Route = createFileRoute("/collections")({
   component: Collections,
 });
 
-const sections = [
-  {
-    id: "new-arrivals",
-    title: "New Arrivals",
-    subtitle: "Just landed this week",
-    items: products.filter((p) => p.badge === "New").concat(products.slice(0, 2)),
-  },
-  {
-    id: "best-sellers",
-    title: "Best Sellers",
-    subtitle: "Loved by our community",
-    items: products.filter((p) => p.badge === "Best Seller"),
-  },
-  {
-    id: "the-gold-edit",
-    title: "The Gold Edit",
-    subtitle: "Warm tones, made to layer",
-    items: productsByCategory("accessories"),
-  },
-];
-
 function Collections() {
+  const catalog = useCatalog();
+  const sections: Array<{ id: string; title: string; subtitle: string; items: Product[] }> = [
+    {
+      id: "new-arrivals",
+      title: "New Arrivals",
+      subtitle: "Just landed this week",
+      items: catalog.filter((p) => p.badge === "New").concat(catalog.slice(0, 2)),
+    },
+    {
+      id: "best-sellers",
+      title: "Best Sellers",
+      subtitle: "Loved by our community",
+      items: catalog.filter((p) => p.badge === "Best Seller"),
+    },
+    {
+      id: "the-gold-edit",
+      title: "The Gold Edit",
+      subtitle: "Warm tones, made to layer",
+      items: catalogByCategory(catalog, "accessories"),
+    },
+  ];
   return (
     <>
       <PageHero

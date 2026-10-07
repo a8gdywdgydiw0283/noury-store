@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/noury/Hero";
 import { Categories, Benefits, Featured, StoryRow } from "@/components/noury/Sections";
 import { ProductGrid } from "@/components/noury/ProductCard";
-import { products } from "@/components/noury/data";
+import { useCatalog } from "@/lib/catalog";
 import { Link } from "@tanstack/react-router";
 
 const title = "Noury — Details That Define You | Accessories, Beauty, Gifts & Favors";
@@ -23,6 +23,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const catalog = useCatalog();
   return (
     <>
       <Hero />
@@ -40,7 +41,7 @@ function Index() {
             View all
           </Link>
         </div>
-        <ProductGrid items={products.slice(0, 4)} />
+        <ProductGrid items={catalog.slice(0, 4)} />
       </section>
     </>
   );

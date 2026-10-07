@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { MessageCircle } from "lucide-react";
 import { buildBabyFavorsMessage, openWhatsApp, WHATSAPP_DISPLAY } from "./whatsapp";
+import { saveFavorRequest } from "@/lib/orders";
 import { ThanksPanel } from "./ThanksPanel";
 
 type BabyFormData = {
@@ -68,6 +69,12 @@ export function BabyFavorsForm() {
   }
 
   function sendViaWhatsApp() {
+    const { name, governorate, address, phone, altPhone } = form;
+    void saveFavorRequest(
+      "baby",
+      { name, governorate, address, phone, altPhone },
+      { babyName: form.babyName, quantity: form.quantity, birthDate: form.birthDate, addition: form.addition },
+    );
     openWhatsApp(buildBabyFavorsMessage(form));
     toast.success("تم فتح واتساب لإرسال طلب التوزيعات");
     setForm(empty);

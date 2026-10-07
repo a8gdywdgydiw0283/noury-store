@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/noury/PageHero";
 import { ProductGrid } from "@/components/noury/ProductCard";
-import { products } from "@/components/noury/data";
+import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/components/noury/store";
 import { Heart, ArrowRight } from "lucide-react";
 import hero1 from "@/assets/hero-1.jpg";
@@ -15,7 +15,8 @@ export const Route = createFileRoute("/wishlist")({
 
 function Wishlist() {
   const { wishlist } = useStore();
-  const items = products.filter((p) => wishlist.includes(p.slug));
+  const catalog = useCatalog();
+  const items = catalog.filter((p) => wishlist.includes(p.slug));
 
   return (
     <>
