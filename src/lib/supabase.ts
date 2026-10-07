@@ -16,5 +16,6 @@ export function getSupabase(): SupabaseClient | null {
 }
 
 export function adminPassword(): string {
-  return (import.meta.env["VITE_ADMIN_PASSWORD"] as string | undefined) || "noury-admin-2026";
+  return (import.meta.env["VITE_ADMIN_PASSWORD"] as string | undefined) || "";
+}
 }

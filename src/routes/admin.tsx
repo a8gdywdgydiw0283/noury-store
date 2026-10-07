@@ -64,6 +64,7 @@ function Admin() {
   const [orders, setOrders] = useState<OrderRow[] | null>(null);
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [rows, setRows] = useState<ProductRow[] | null>(null);
+  const [loadError, setLoadError] = useState(false);
   const [editing, setEditing] = useState<Partial<ProductRow> | null>(null);
   const [uploading, setUploading] = useState(false);
 
@@ -75,8 +76,14 @@ function Admin() {
 
   useEffect(() => {
     if (!authed) return;
-    fetchOrders().then(setOrders);
-    fetchProductsAdmin().then(setRows);
+    fetchOrders().then((o) => {
+      setOrders(o ?? []);
+      if (o === null) setLoadError(true);
+    });
+    fetchProductsAdmin().then((r) => {
+      setRows(r ?? []);
+      if (r === null) setLoadError(true);
+    });
   }, [authed]);
 
   function login(e: FormEvent) {
@@ -176,6 +183,11 @@ function Admin() {
         {!isSupabaseConfigured && (
           <p className="mb-6 border border-border bg-card px-4 py-3 text-xs text-muted-foreground">
             Supabase غير مربوط — ضيف VITE_SUPABASE_URL و VITE_SUPABASE_ANON_KEY في ملف .env (ولو على Vercel ضيفهم في Environment Variables).
+          </p>
+        )}
+        {loadError && (
+          <p className="mb-6 border border-destructive/50 bg-card px-4 py-3 text-xs">
+            تعذر الاتصال بقاعدة البيانات — اتأكد إن رابط المشروع والمفتاح صح وإن ملف schema.sql اتنفذ في Supabase.
           </p>
         )}
         <div className="mb-8 flex gap-3">
