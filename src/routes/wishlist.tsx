@@ -4,7 +4,7 @@ import { ProductGrid } from "@/components/noury/ProductCard";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/components/noury/store";
 import { Heart, ArrowRight } from "lucide-react";
-import hero1 from "@/assets/hero-1.jpg";
+import heroWishlist from "@/assets/hero-wishlist.jpg";
 
 export const Route = createFileRoute("/wishlist")({
   head: () => ({
@@ -24,7 +24,7 @@ function Wishlist() {
         eyebrow="Saved for later"
         title="My Wishlist"
         subtitle="The pieces you've saved. Add them to your bag whenever you're ready."
-        image={hero1}
+        image={heroWishlist}
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Wishlist" }]}
       />
       <section className="mx-auto max-w-7xl px-6 py-16">
