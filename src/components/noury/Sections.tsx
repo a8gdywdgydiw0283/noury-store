@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Truck, ShieldCheck, Gift, Heart } from "lucide-react";
 import { Logo } from "./Logo";
-import { categories, productsByCategory } from "./data";
+import { productsByCategory } from "./data";
+import { useCategories } from "@/lib/catalog";
 import featured from "@/assets/featured-model.jpg";
 import story from "@/assets/story.jpg";
 import gifts from "@/assets/cat-gifts.jpg";
@@ -12,8 +13,10 @@ const Arrow = () => (
 const zoom = "transition-transform duration-[1200ms] ease-out group-hover:scale-105";
 
 export function Categories() {
+  const categories = useCategories();
+  const cols = categories.length <= 4 ? "md:grid-cols-4" : "md:grid-cols-5";
   return (
-    <section id="categories" className="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-4">
+    <section id="categories" className={`mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 ${cols} gap-4`}>
       {categories.map((c) => (
         <Link key={c.slug} to="/category/$slug" params={{ slug: c.slug }} className="group block bg-card border border-border">
           <div className="aspect-[5/4] overflow-hidden">

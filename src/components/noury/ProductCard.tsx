@@ -6,6 +6,7 @@ import { useStore } from "./store";
 export function ProductCard({ product }: { product: Product }) {
   const { addToCart, toggleWishlist, isWishlisted, formatPrice } = useStore();
   const wishlisted = isWishlisted(product.slug);
+  const soldOut = product.stock !== undefined && product.stock <= 0;
 
   return (
     <div className="group flex flex-col">
@@ -38,12 +39,18 @@ export function ProductCard({ product }: { product: Product }) {
             className={wishlisted ? "fill-gold text-gold" : "text-foreground"}
           />
         </button>
+        {soldOut && (
+          <span className="absolute left-3 top-3 bg-destructive text-cream px-2.5 py-1 text-[0.6rem] tracking-[0.2em] uppercase">
+            Out of Stock
+          </span>
+        )}
         <button
           type="button"
           onClick={() => addToCart(product.slug)}
-          className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-2 bg-mocha text-cream py-2.5 eyebrow opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 cursor-pointer"
+          disabled={soldOut}
+          className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-2 bg-mocha text-cream py-2.5 eyebrow opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 cursor-pointer disabled:opacity-60"
         >
-          <ShoppingBag size={14} strokeWidth={1.25} /> Add to Bag
+          <ShoppingBag size={14} strokeWidth={1.25} /> {soldOut ? "Out of Stock" : "Add to Bag"}
         </button>
       </div>
       <div className="flex items-start justify-between gap-3 mt-3">

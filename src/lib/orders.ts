@@ -26,6 +26,8 @@ export type ProductRow = {
   description: string;
   badge: string | null;
   visible: boolean;
+  stock: number;
+  low_stock_at: number;
   created_at: string;
 };
 

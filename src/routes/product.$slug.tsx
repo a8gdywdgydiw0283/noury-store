@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Heart, Minus, Plus, ShieldCheck, Truck, Gift } from "lucide-react";
 import { ProductGrid } from "@/components/noury/ProductCard";
-import { getCategory } from "@/components/noury/data";
+import { findCategory } from "@/lib/catalog";
 import { getCatalog } from "@/lib/catalog";
 import { useStore } from "@/components/noury/store";
 
@@ -30,8 +30,9 @@ function ProductPage() {
   const { product, related } = Route.useLoaderData();
   const { addToCart, toggleWishlist, isWishlisted, formatPrice } = useStore();
   const [qty, setQty] = useState(1);
-  const category = getCategory(product.category);
+  const category = findCategory(product.category);
   const wishlisted = isWishlisted(product.slug);
+  const soldOut = product.stock !== undefined && product.stock <= 0;
 
   return (
     <>
@@ -89,9 +90,10 @@ function ProductPage() {
               <button
                 type="button"
                 onClick={() => addToCart(product.slug, qty)}
-                className="flex-1 bg-mocha text-cream py-3.5 eyebrow hover:bg-foreground transition-colors cursor-pointer"
+                disabled={soldOut}
+                className="flex-1 bg-mocha text-cream py-3.5 eyebrow hover:bg-foreground transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Add to Bag
+                {soldOut ? "Out of Stock" : "Add to Bag"}
               </button>
               <button
                 type="button"

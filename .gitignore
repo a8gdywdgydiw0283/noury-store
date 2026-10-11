@@ -26,6 +26,36 @@ dist-ssr
 .next/
 *.tsbuildinfo
 
+# Local media / scripts unrelated to the web app
+/*.mp4
+/*.m4a
+/*.mp3
+/*.wav
+/*.py
+/*.pyc
+/__pycache__/
+/*.jpg
+/*.jpeg
+/*.png
+/*.webp
+/check*.jpg
+/parts.txt
+/v4_timeline.txt
+/scenes_*.json
+/AI_Style*
+/voiceover*
+/video_silent*
+/music*
+/sfx*
+/mixed*
+/part*.mp4
+/launch_workers.py
+/finish_v4.py
+/align_words.py
+/build_v*.py
+/build_video.py
+/transcribe*.py
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

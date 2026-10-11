@@ -5,18 +5,18 @@ import { ProductGrid } from "@/components/noury/ProductCard";
 import { GiftOrderForm } from "@/components/noury/GiftOrderForm";
 import { BabyFavorsForm } from "@/components/noury/BabyFavorsForm";
 import { BridalFavorsForm } from "@/components/noury/BridalFavorsForm";
-import { getCategory } from "@/components/noury/data";
-import { catalogByCategory, getCatalog } from "@/lib/catalog";
+import { catalogByCategory, findCategory, getCatalog, getCategories } from "@/lib/catalog";
 
 export const Route = createFileRoute("/category/$slug")({
   loader: async ({ params }) => {
-    const category = getCategory(params.slug);
+    const cats = await getCategories();
+    const category = cats.find((c) => c.slug === params.slug) ?? findCategory(params.slug);
     if (!category) throw notFound();
     const catalog = await getCatalog();
     return { category, items: catalogByCategory(catalog, category.slug) };
   },
   head: ({ params }) => {
-    const category = getCategory(params.slug);
+    const category = findCategory(params.slug);
     const name = category ? category.title : "Shop";
     return {
       meta: [

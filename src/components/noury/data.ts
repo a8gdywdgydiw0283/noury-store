@@ -32,6 +32,8 @@ export type Product = {
   image: string;
   description: string;
   badge?: string;
+  /** Present only for remote catalog items. Undefined = stock not tracked. */
+  stock?: number;
 };
 
 export const categories: Category[] = [

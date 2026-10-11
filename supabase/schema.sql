@@ -61,3 +61,47 @@ create policy "public update product-images" on storage.objects
 drop policy if exists "public delete product-images" on storage.objects;
 create policy "public delete product-images" on storage.objects
   for delete using (bucket_id = 'product-images');
+
+-- 5) ERP upgrade (safe to re-run): stock, categories, expenses
+alter table public.products add column if not exists stock integer not null default 0;
+alter table public.products add column if not exists low_stock_at integer not null default 5;
+
+create table if not exists public.categories (
+  slug text primary key,
+  title text not null,
+  subtitle text not null default '',
+  blurb text not null default '',
+  image_url text,
+  custom boolean not null default false,
+  visible boolean not null default true,
+  sort_order integer not null default 0
+);
+
+insert into public.categories (slug, title, subtitle, blurb, custom, visible, sort_order) values
+  ('accessories', 'Accessories', 'For Him & Her', 'Delicate pieces designed to layer, stack and live in.', false, true, 1),
+  ('beauty', 'Beauty', 'Makeup & Skincare', 'Everyday radiance, from skin prep to the final glow.', false, true, 2),
+  ('gifts', 'Gifts', 'For Every Occasion', 'Every gift is tailored to the customer — tell us what you have in mind.', true, true, 3),
+  ('bridal-favors', 'Bridal Favors', 'Weddings & Henna', 'Elegant favors for bridal showers, weddings and henna nights.', true, true, 4),
+  ('baby-favors', 'Baby Favors', 'Newborn Distributions', 'Personalised newborn favors — tell us the baby name, count and birth date.', true, true, 5)
+on conflict (slug) do nothing;
+
+create table if not exists public.expenses (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  amount numeric not null default 0,
+  category text not null default 'general',
+  spent_on date not null default current_date,
+  notes text default '',
+  created_at timestamptz not null default now()
+);
+
+alter table public.categories enable row level security;
+alter table public.expenses enable row level security;
+
+drop policy if exists "public all categories" on public.categories;
+create policy "public all categories" on public.categories
+  for all using (true) with check (true);
+
+drop policy if exists "public all expenses" on public.expenses;
+create policy "public all expenses" on public.expenses
+  for all using (true) with check (true);
