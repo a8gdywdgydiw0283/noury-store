@@ -10,7 +10,8 @@ import {
 } from "recharts";
 import type { OrderRow } from "@/lib/orders";
 import { dayKey, monthKey, revenueOf, todayKey } from "@/lib/erp";
-import { Card, SectionTitle, sourceLabel, statusLabel } from "./ui";
+import { Card, SectionTitle } from "./ui";
+import { useLang } from "./lang";
 
 function last14Days(): string[] {
   const days: string[] = [];
@@ -23,6 +24,7 @@ function last14Days(): string[] {
 }
 
 export function DashboardTab({ orders }: { orders: OrderRow[] }) {
+  const { t, trSource, trStatus } = useLang();
   const today = todayKey();
   const month = monthKey();
 
@@ -54,15 +56,15 @@ export function DashboardTab({ orders }: { orders: OrderRow[] }) {
   const recent = useMemo(() => orders.slice(0, 5), [orders]);
 
   const kpis = [
-    { label: "إيراد اليوم", value: `${stats.todayRevenue.toLocaleString("en-EG")} ج`, sub: `${stats.todayCount} طلبات` },
-    { label: "إيراد الشهر", value: `${stats.monthRevenue.toLocaleString("en-EG")} ج`, sub: `${stats.monthCount} طلبات` },
-    { label: "طلبات جديدة", value: String(stats.pending), sub: "محتاجة تأكيد" },
-    { label: "العملاء", value: String(stats.customers), sub: "عميل مسجل بطلب" },
+    { label: t("kpiToday"), value: `${stats.todayRevenue.toLocaleString("en-EG")} ${t("egp")}`, sub: `${stats.todayCount} ${t("ordersWord")}` },
+    { label: t("kpiMonth"), value: `${stats.monthRevenue.toLocaleString("en-EG")} ${t("egp")}`, sub: `${stats.monthCount} ${t("ordersWord")}` },
+    { label: t("kpiNew"), value: String(stats.pending), sub: t("needConfirm") },
+    { label: t("kpiCustomers"), value: String(stats.customers), sub: t("withOrders") },
   ];
 
   return (
     <div className="space-y-6">
-      <SectionTitle eyebrow="نظرة عامة" title="لوحة القيادة" />
+      <SectionTitle eyebrow={t("dashEyebrow")} title={t("dashTitle")} />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {kpis.map((k) => (
           <Card key={k.label}>
@@ -73,31 +75,31 @@ export function DashboardTab({ orders }: { orders: OrderRow[] }) {
         ))}
       </div>
       <Card>
-        <p className="eyebrow text-muted-foreground mb-4">الإيراد — آخر 14 يوم</p>
+        <p className="eyebrow text-muted-foreground mb-4">{t("chartTitle")}</p>
         <div className="h-64" dir="ltr">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chart} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
               <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
               <XAxis dataKey="day" fontSize={11} />
               <YAxis fontSize={11} />
-              <Tooltip formatter={(v) => [`${Number(v).toLocaleString("en-EG")} ج`, "الإيراد"]} />
+              <Tooltip formatter={(v) => [`${Number(v).toLocaleString("en-EG")} ${t("egp")}`, t("revenue")]} />
               <Area type="monotone" dataKey="revenue" stroke="var(--color-mocha)" fill="var(--color-gold)" fillOpacity={0.35} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
       </Card>
       <Card>
-        <p className="eyebrow text-muted-foreground mb-4">أحدث الطلبات</p>
+        <p className="eyebrow text-muted-foreground mb-4">{t("recentTitle")}</p>
         {recent.length === 0 ? (
-          <p className="text-sm text-muted-foreground">مفيش طلبات لسه.</p>
+          <p className="text-sm text-muted-foreground">{t("noOrders")}</p>
         ) : (
           <div className="divide-y divide-border border-y border-border">
             {recent.map((o) => (
               <div key={o.id} className="flex flex-wrap items-center justify-between gap-2 py-3 text-sm">
                 <span>{String((o.customer as Record<string, string>)?.["name"] ?? "—")}</span>
-                <span className="text-muted-foreground">{sourceLabel[o.source] ?? o.source}</span>
-                <span>{Number(o.subtotal ?? 0).toLocaleString("en-EG")} ج</span>
-                <span className="eyebrow text-gold">{statusLabel[o.status] ?? o.status}</span>
+                <span className="text-muted-foreground">{trSource(o.source)}</span>
+                <span>{Number(o.subtotal ?? 0).toLocaleString("en-EG")} {t("egp")}</span>
+                <span className="eyebrow text-gold">{trStatus(o.status)}</span>
               </div>
             ))}
           </div>

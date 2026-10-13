@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
 import type { OrderRow } from "@/lib/orders";
 import { summarizeCustomers } from "@/lib/erp";
-import { fmtDate, inputCls, SectionTitle, sourceLabel } from "./ui";
+import { fmtDate, inputCls, SectionTitle } from "./ui";
+import { fillTpl, useLang } from "./lang";
 
 export function CustomersTab({ orders }: { orders: OrderRow[] }) {
+  const { t, lang, trSource } = useLang();
   const [q, setQ] = useState("");
   const customers = useMemo(() => summarizeCustomers(orders), [orders]);
   const term = q.trim();
@@ -15,16 +17,16 @@ export function CustomersTab({ orders }: { orders: OrderRow[] }) {
 
   return (
     <div>
-      <SectionTitle eyebrow={`${customers.length} عميل · إجمالي مشتريات ${totalSpent.toLocaleString("en-EG")} ج`} title="العملاء" />
+      <SectionTitle eyebrow={fillTpl(t("custEyebrow"), { n: customers.length, t: totalSpent.toLocaleString("en-EG") })} title={t("custTitle")} />
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="دوّر بالاسم أو الموبايل أو المحافظة..."
+        placeholder={t("custSearch")}
         className={`${inputCls} mb-6 max-w-md`}
       />
       {shown.length === 0 ? (
         <p className="border border-border bg-card px-6 py-14 text-center text-sm text-muted-foreground">
-          مفيش عملاء لسه — أول ما ييجي طلب هيظهر هنا ملف العميل.
+          {t("noCustomers")}
         </p>
       ) : (
         <div className="divide-y divide-border border-y border-border">
@@ -36,15 +38,15 @@ export function CustomersTab({ orders }: { orders: OrderRow[] }) {
                 <p className="mt-1 text-xs text-muted-foreground">{c.governorate} · {c.address}</p>
               </div>
               <div className="text-sm">
-                <p>{c.orders} {c.orders === 1 ? "طلب" : "طلبات"}</p>
-                <p className="mt-1 text-xs text-muted-foreground">آخر طلب: {fmtDate(c.lastOrder)}</p>
+                <p>{c.orders} {c.orders === 1 ? t("order_one") : t("order_many")}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{t("lastOrder")} {fmtDate(c.lastOrder)}</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 {c.sources.map((s) => (
-                  <span key={s} className="border border-border px-2.5 py-1 text-xs">{sourceLabel[s] ?? s}</span>
+                  <span key={s} className="border border-border px-2.5 py-1 text-xs">{trSource(s)}</span>
                 ))}
               </div>
-              <p className="font-serif text-2xl">{c.spent.toLocaleString("en-EG")} ج</p>
+              <p className="font-serif text-2xl" dir={lang === "ar" ? "rtl" : "ltr"}>{c.spent.toLocaleString("en-EG")} {t("egp")}</p>
             </div>
           ))}
         </div>

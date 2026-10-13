@@ -31,39 +31,6 @@ export function SectionTitle({ eyebrow, title }: { eyebrow: string; title: strin
   );
 }
 
-export const statusLabel: Record<string, string> = {
-  new: "جديد",
-  confirmed: "تم التأكيد",
-  shipped: "اتشحن",
-  cancelled: "ملغي",
-};
-
-export const sourceLabel: Record<string, string> = {
-  checkout: "سلة",
-  gift: "هدية",
-  baby: "مواليد",
-  bridal: "عرايس",
-};
-
-export const keyLabel: Record<string, string> = {
-  name: "الاسم",
-  phone: "الموبايل",
-  altPhone: "الرقم البديل",
-  governorate: "المحافظة",
-  address: "العنوان",
-  recipient: "الهدية لمين",
-  details: "التفاصيل",
-  babyName: "اسم البيبي",
-  quantity: "العدد",
-  birthDate: "تاريخ الولادة",
-  addition: "الإضافة",
-  groomName: "اسم العريس",
-  brideName: "اسم العروسة",
-  cardPhrase: "الجملة على الكارت",
-  eventDate: "التاريخ",
-  photosCount: "عدد الصور",
-};
-
 export function fmtDate(iso: string): string {
   try {
     return new Date(iso).toLocaleString("en-EG", {
