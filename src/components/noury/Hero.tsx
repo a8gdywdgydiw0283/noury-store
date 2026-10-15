@@ -34,7 +34,7 @@ export function Hero() {
         <h1 className="mt-5 font-serif text-5xl md:text-7xl leading-[1.02] font-normal">More Than<br />Just Products...</h1>
         <p className="font-script text-5xl md:text-6xl text-gold mt-2">It's a Feeling</p>
         <p className="mt-6 max-w-sm text-sm leading-relaxed opacity-90">
-          From elegant accessories to beauty essentials, gifts and bridal favors — everything you need to express your unique style.
+          From elegant accessories to gifts and bridal favors — everything you need to express your unique style.
         </p>
         <Link to="/category/$slug" params={{ slug: "accessories" }} className="mt-8 inline-flex w-fit items-center gap-6 bg-cream text-mocha px-7 py-3.5 eyebrow hover:bg-background transition-colors">
           Shop Now <ArrowRight size={16} strokeWidth={1.25} />

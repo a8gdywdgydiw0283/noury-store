@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "Can I return an item?",
-    a: "Absolutely. You have 14 days to return unused items in their original packaging. Beauty products must be unopened for hygiene reasons.",
+    a: "Absolutely. You have 14 days to return unused items in their original packaging.",
   },
   {
     q: "Do you gift wrap?",

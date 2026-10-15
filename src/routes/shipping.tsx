@@ -64,7 +64,7 @@ function Shipping() {
             <h2 className="font-serif text-3xl">Returns</h2>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
               If something isn't quite right, you have 14 days to return unused items in their original
-              packaging. Beauty products must be unopened for hygiene reasons. To start a return, contact our
+              packaging. To start a return, contact our
               team and we'll arrange the rest.
             </p>
             <Link

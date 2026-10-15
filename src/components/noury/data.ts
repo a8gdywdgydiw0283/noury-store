@@ -1,5 +1,4 @@
 import accessories from "@/assets/cat-accessories.jpg";
-import beauty from "@/assets/cat-beauty.jpg";
 import gifts from "@/assets/cat-gifts.jpg";
 import bridal from "@/assets/cat-bridal.jpg";
 import baby from "@/assets/cat-baby.jpg";
@@ -10,7 +9,7 @@ import featuredModel from "@/assets/featured-model.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 
-export type CategorySlug = "accessories" | "beauty" | "gifts" | "bridal-favors" | "baby-favors";
+export type CategorySlug = "accessories" | "gifts" | "bridal-favors" | "baby-favors";
 
 export type Category = {
   slug: CategorySlug;
@@ -43,13 +42,6 @@ export const categories: Category[] = [
     subtitle: "For Him & Her",
     blurb: "Delicate pieces designed to layer, stack and live in.",
     image: accessories,
-  },
-  {
-    slug: "beauty",
-    title: "Beauty",
-    subtitle: "Makeup & Skincare",
-    blurb: "Everyday radiance, from skin prep to the final glow.",
-    image: beauty,
   },
   {
     slug: "gifts",
@@ -120,31 +112,6 @@ export const products: Product[] = [
     image: bracelets,
     description: "A classic flat-link bracelet finished with a secure clasp.",
   },
-  {
-    slug: "rose-glow-lip-set",
-    name: "Rose Glow Lip Set",
-    category: "beauty",
-    price: 429,
-    image: beauty,
-    description: "Three buildable satin shades that flatter every skin tone.",
-  },
-  {
-    slug: "radiance-skincare-duo",
-    name: "Radiance Skincare Duo",
-    category: "beauty",
-    price: 899,
-    image: beauty,
-    description: "A brightening serum and moisturiser, paired for a natural glow.",
-    badge: "Best Seller",
-  },
-  {
-    slug: "glow-beauty-essentials",
-    name: "Glow Beauty Essentials",
-    category: "beauty",
-    price: 699,
-    image: beauty,
-    description: "A curated edit of the pieces we reach for every single day.",
-  },
 ];
 
 export type Collection = {
@@ -170,7 +137,6 @@ export type NavItem =
 export const nav: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "Accessories", to: "/category/$slug", slug: "accessories" },
-  { label: "Beauty", to: "/category/$slug", slug: "beauty" },
   { label: "Gifts", to: "/category/$slug", slug: "gifts" },
   { label: "Bridal Favors", to: "/category/$slug", slug: "bridal-favors" },
   { label: "Baby Favors", to: "/category/$slug", slug: "baby-favors" },

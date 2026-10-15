@@ -59,7 +59,7 @@ function About() {
           <h2 className="font-serif text-4xl mt-3">Small details, big impact</h2>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
             What began as a small edit of accessories has grown into a full world of style — accessories,
-            beauty, gifts and celebration favors, all under one roof. We curate pieces that feel personal, pieces
+            gifts and celebration favors, all under one roof. We curate pieces that feel personal, pieces
             that become part of your everyday rituals.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

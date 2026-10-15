@@ -85,6 +85,10 @@ insert into public.categories (slug, title, subtitle, blurb, custom, visible, so
   ('baby-favors', 'Baby Favors', 'Newborn Distributions', 'Personalised newborn favors — tell us the baby name, count and birth date.', true, true, 5)
 on conflict (slug) do nothing;
 
+-- Remove the Beauty section entirely (category + its products)
+delete from public.products where category = 'beauty';
+delete from public.categories where slug = 'beauty';
+
 create table if not exists public.expenses (
   id uuid primary key default gen_random_uuid(),
   title text not null,

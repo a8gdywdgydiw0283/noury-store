@@ -10,7 +10,7 @@ import {
 import { btnGhost, btnPrimary, Field, inputCls, SectionTitle } from "./ui";
 import { fillTpl, useLang } from "./lang";
 
-const categories = ["accessories", "beauty", "gifts", "bridal-favors", "baby-favors"];
+const categories = ["accessories", "gifts", "bridal-favors", "baby-favors"];
 
 export function ProductsTab({
   rows,

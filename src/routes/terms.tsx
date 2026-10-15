@@ -26,7 +26,7 @@ const sections = [
   },
   {
     title: "4. Shipping & Returns",
-    body: "Delivery times are estimates and may vary. Unused items in their original packaging may be returned within 14 days. Beauty products must be unopened for hygiene reasons.",
+    body: "Delivery times are estimates and may vary. Unused items in their original packaging may be returned within 14 days.",
   },
   {
     title: "5. Privacy",

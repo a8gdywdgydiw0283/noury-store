@@ -5,8 +5,8 @@ import { ProductGrid } from "@/components/noury/ProductCard";
 import { useCatalog } from "@/lib/catalog";
 import { Link } from "@tanstack/react-router";
 
-const title = "Noury — Details That Define You | Accessories, Beauty, Gifts & Favors";
-const description = "Shop Noury for elegant accessories, beauty essentials, gifts and bridal favors.";
+const title = "Noury — Details That Define You | Accessories, Gifts & Favors";
+const description = "Shop Noury for elegant accessories, gifts and bridal favors.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
