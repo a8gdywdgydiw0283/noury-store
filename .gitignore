@@ -41,6 +41,12 @@ dist-ssr
 /check*.jpg
 /parts.txt
 /v4_timeline.txt
+/*.srt
+/*.fcpxml
+/clips_tokens/
+/transcript*.json
+/whisper*.json
+/tokens_*
 /scenes_*.json
 /AI_Style*
 /voiceover*

@@ -39,7 +39,7 @@ export const categories: Category[] = [
   {
     slug: "accessories",
     title: "Accessories",
-    subtitle: "For Him & Her",
+    subtitle: "",
     blurb: "Delicate pieces designed to layer, stack and live in.",
     image: accessories,
   },
